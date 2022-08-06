@@ -19,6 +19,7 @@ namespace SmoothScroll
 		private readonly IWpfTextView wpfTextView;
 
 		private bool ExtEnable => SmoothScrollPackage.OptionsPage?.ExtEnable ?? true;
+		private bool HookEnable => SmoothScrollPackage.OptionsPage?.HookEnable ?? true;
 		private bool ShiftEnable => SmoothScrollPackage.OptionsPage?.ShiftEnable ?? true;
 		private bool AltEnable => SmoothScrollPackage.OptionsPage?.AltEnable ?? true;
 		private bool SmoothEnable => SmoothScrollPackage.OptionsPage?.SmoothEnable ?? true;
@@ -33,11 +34,12 @@ namespace SmoothScroll
 			verticalController = new ScrollController(pageScroller, this, ScrollingDirection.Vertical);
 			horizontalController = new ScrollController(pageScroller, this, ScrollingDirection.Horizontal);
 
-			wpfTextView.VisualElement.Loaded += (_, __) =>
-			{
-				var source = PresentationSource.FromVisual(wpfTextView.VisualElement) as HwndSource;
-				source?.AddHook(MessageHook);
-			};
+			if (HookEnable) {
+				wpfTextView.VisualElement.Loaded += (_, __) => {
+					var source = PresentationSource.FromVisual(wpfTextView.VisualElement) as HwndSource;
+					source?.AddHook(MessageHook);
+				};
+			}
 		}
 
 		public override void PreprocessMouseWheel(MouseWheelEventArgs e)
