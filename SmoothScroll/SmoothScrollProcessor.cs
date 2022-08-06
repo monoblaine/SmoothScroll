@@ -19,6 +19,7 @@ namespace SmoothScroll
 		private readonly IWpfTextView wpfTextView;
 
 		private bool ExtEnable => SmoothScrollPackage.OptionsPage?.ExtEnable ?? true;
+		private bool DefaultEnable => SmoothScrollPackage.OptionsPage?.DefaultEnable ?? true;
 		private bool HookEnable => SmoothScrollPackage.OptionsPage?.HookEnable ?? true;
 		private bool ShiftEnable => SmoothScrollPackage.OptionsPage?.ShiftEnable ?? true;
 		private bool AltEnable => SmoothScrollPackage.OptionsPage?.AltEnable ?? true;
@@ -64,8 +65,10 @@ namespace SmoothScroll
 				return;
 			}
 
-			PostScrollRequest(e.Delta, ScrollingDirection.Vertical);
-			e.Handled = true;
+			if (DefaultEnable) {
+				PostScrollRequest(e.Delta, ScrollingDirection.Vertical);
+				e.Handled = true;
+			}
 		}
 
 		public override void PostprocessMouseDown(MouseButtonEventArgs e)

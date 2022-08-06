@@ -14,6 +14,11 @@ namespace SmoothScroll
 		public bool ExtEnable { get; set; } = true;
 
 		[Category("General")]
+		[Description("Handle PreprocessMouseWheel default case or not.")]
+		[DisplayName("Handle PreprocessMouseWheel default case")]
+		public bool DefaultEnable { get; set; } = true;
+
+		[Category("General")]
 		[Description("Call source?.AddHook(MessageHook) or not.")]
 		[DisplayName("Add MessageHook")]
 		public bool HookEnable { get; set; } = true;
