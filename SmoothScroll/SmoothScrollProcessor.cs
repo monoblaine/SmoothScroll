@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.Text.Editor;
+using Microsoft.VisualStudio.Text.Editor;
 using ScrollShared;
 using System;
 using System.Diagnostics;
@@ -50,7 +50,6 @@ namespace SmoothScroll
 			if (AltEnable && (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)))
 			{
 				wpfTextView.ViewScroller.ScrollViewportVerticallyByPage(e.Delta < 0 ? ScrollDirection.Down : ScrollDirection.Up);
-
 				wpfTextView.VisualElement.Focus();
 				e.Handled = true;
 				return;
@@ -59,7 +58,6 @@ namespace SmoothScroll
 			if (ShiftEnable && (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
 			{
 				PostScrollRequest(-e.Delta, ScrollingDirection.Horizontal);
-
 				e.Handled = true;
 				return;
 			}
