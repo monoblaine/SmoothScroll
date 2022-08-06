@@ -34,8 +34,8 @@ namespace SmoothScroll
 		public bool ShiftEnable { get; set; } = true;
 
 		[Category("General")]
-		[Description("Hold Alt key to scroll text view by one page up/down.")]
-		[DisplayName("Enable Alt Scroll")]
+		[Description("Hold Alt key to smooth scroll text view by one page up/down.")]
+		[DisplayName("Enable Smooth Page Scroll")]
 		public bool AltEnable { get; set; } = true;
 
 		[Category("Parameter")]

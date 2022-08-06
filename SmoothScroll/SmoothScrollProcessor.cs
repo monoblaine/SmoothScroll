@@ -52,8 +52,8 @@ namespace SmoothScroll
 
 			if (AltEnable && (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)))
 			{
-				wpfTextView.ViewScroller.ScrollViewportVerticallyByPage(e.Delta < 0 ? ScrollDirection.Down : ScrollDirection.Up);
-				wpfTextView.VisualElement.Focus();
+				var pageSize = Math.Floor(wpfTextView.ViewportHeight / wpfTextView.LineHeight) * wpfTextView.LineHeight;
+				verticalController.ScrollView(e.Delta < 0 ? -pageSize : pageSize);
 				e.Handled = true;
 				return;
 			}
