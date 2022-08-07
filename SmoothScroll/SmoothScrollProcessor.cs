@@ -2,8 +2,6 @@ using Microsoft.VisualStudio.Text.Editor;
 using ScrollShared;
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -54,22 +52,6 @@ namespace SmoothScroll
 
 			if (AltEnable && (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)))
 			{
-				using (var writer = new StreamWriter(@"C:\Users\Serhan\Desktop\fuck.txt", true, Encoding.UTF8)) {
-					writer.WriteLine($"wpfTextView.ViewportTop: {wpfTextView.ViewportTop}");
-					writer.WriteLine($"wpfTextView.ViewportRight: {wpfTextView.ViewportRight}");
-					writer.WriteLine($"wpfTextView.ViewportBottom: {wpfTextView.ViewportBottom}");
-					writer.WriteLine($"wpfTextView.ViewportLeft: {wpfTextView.ViewportLeft}");
-					writer.WriteLine($"wpfTextView.ViewportWidth: {wpfTextView.ViewportWidth}");
-					writer.WriteLine($"wpfTextView.ViewportHeight: {wpfTextView.ViewportHeight}");
-					writer.WriteLine($"wpfTextView.LineHeight: {wpfTextView.LineHeight}");
-					writer.WriteLine($"wpfTextView.TextViewLines.Count: {wpfTextView.TextViewLines.Count}");
-					writer.WriteLine($"wpfTextView.TextViewLines.FirstVisibleLine.Top: {wpfTextView.TextViewLines.FirstVisibleLine.Top}");
-					writer.WriteLine($"wpfTextView.TextViewLines.FirstVisibleLine.Bottom: {wpfTextView.TextViewLines.FirstVisibleLine.Bottom}");
-					writer.WriteLine($"wpfTextView.TextViewLines.LastVisibleLine.Top: {wpfTextView.TextViewLines.LastVisibleLine.Top}");
-					writer.WriteLine($"wpfTextView.TextViewLines.LastVisibleLine.Bottom: {wpfTextView.TextViewLines.LastVisibleLine.Bottom}");
-					writer.WriteLine();
-				}
-
 				var pageSize = Math.Floor(wpfTextView.ViewportHeight / wpfTextView.LineHeight) * wpfTextView.LineHeight;
 				verticalController.ScrollView(e.Delta < 0 ? -pageSize : pageSize);
 				e.Handled = true;
