@@ -43,14 +43,14 @@ namespace ScrollShared
 			return (int)(maxTotalSteps * speedRatio);
 		}
 
-		public void ScrollView(double distance)
+		public void ScrollView(double distance, bool useDistanceAsTheRemain = false)
 		{
 			double intervalRatio = GetSpeedRatio(parameters.SpeedLever);
 			SetFPS(parameters.FPS);
 
 			int new_remain = 0;
 
-			if (Math.Sign(distance) != Math.Sign(remain))
+			if (Math.Sign(distance) != Math.Sign(remain) || useDistanceAsTheRemain)
 			{
 				new_remain = (int)distance;
 			}

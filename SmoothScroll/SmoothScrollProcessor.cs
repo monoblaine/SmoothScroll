@@ -53,7 +53,7 @@ namespace SmoothScroll
 			if (AltEnable && (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)))
 			{
 				var pageSize = Math.Floor(wpfTextView.ViewportHeight / wpfTextView.LineHeight - 1/*MAGIC NUMBER*/) * wpfTextView.LineHeight;
-				verticalController.ScrollView(e.Delta < 0 ? -pageSize : pageSize);
+				verticalController.ScrollView(e.Delta < 0 ? -pageSize : pageSize, useDistanceAsTheRemain: true);
 				e.Handled = true;
 				return;
 			}
