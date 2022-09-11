@@ -24,6 +24,7 @@ namespace SmoothScroll
 		private bool ShiftEnable => SmoothScrollPackage.OptionsPage?.ShiftEnable ?? true;
 		private bool AltEnable => SmoothScrollPackage.OptionsPage?.AltEnable ?? true;
 		private bool SmoothEnable => SmoothScrollPackage.OptionsPage?.SmoothEnable ?? true;
+		private bool HorizontalControllerEnabled => ExtEnable && (ShiftEnable || SmoothEnable);
 		private double DistanceRatio => SmoothScrollPackage.OptionsPage?.DistanceRatio ?? 1.1;
 
 		private readonly ScrollController verticalController, horizontalController;
@@ -33,7 +34,9 @@ namespace SmoothScroll
 			this.wpfTextView = _wpfTextView;
 			var pageScroller = new PageScroller(wpfTextView);
 			verticalController = new ScrollController(pageScroller, this, ScrollingDirection.Vertical);
-			horizontalController = new ScrollController(pageScroller, this, ScrollingDirection.Horizontal);
+			if (HorizontalControllerEnabled) {
+				horizontalController = new ScrollController(pageScroller, this, ScrollingDirection.Horizontal);
+			}
 
 			if (HookEnable) {
 				wpfTextView.VisualElement.Loaded += (_, __) => {
@@ -74,7 +77,9 @@ namespace SmoothScroll
 		public override void PostprocessMouseDown(MouseButtonEventArgs e)
 		{
 			verticalController.StopScroll();
-			horizontalController.StopScroll();
+			if (HorizontalControllerEnabled) {
+				horizontalController.StopScroll();
+			}
 		}
 
 		private void PostScrollRequest(double distance, ScrollingDirection direction)
@@ -90,7 +95,7 @@ namespace SmoothScroll
 					wpfTextView.ViewScroller.ScrollViewportVerticallyByPixels(distance);
 				}
 			}
-			else
+			else if (HorizontalControllerEnabled)
 			{
 				if (SmoothEnable && NativeMethods.IsMouseEvent())
 				{
