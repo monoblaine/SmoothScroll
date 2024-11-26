@@ -86,7 +86,7 @@ namespace SmoothScroll
 		{
 			if (direction == ScrollingDirection.Vertical)
 			{
-				if (SmoothEnable && NativeMethods.IsMouseEvent())
+				if (SmoothEnable)
 				{
 					verticalController.ScrollView(distance * DistanceRatio);
 				}
@@ -97,7 +97,7 @@ namespace SmoothScroll
 			}
 			else if (HorizontalControllerEnabled)
 			{
-				if (SmoothEnable && NativeMethods.IsMouseEvent())
+				if (SmoothEnable)
 				{
 					horizontalController.ScrollView(distance * DistanceRatio);
 				}
