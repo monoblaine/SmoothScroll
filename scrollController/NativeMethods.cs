@@ -59,10 +59,10 @@ namespace ScrollShared
 		/// <summary>
 		/// Gets high bits values of the pointer.
 		/// </summary>
-		public static int HIWORD(IntPtr ptr)
+		public static ushort HIWORD(IntPtr ptr)
 		{
-			var val32 = ptr.ToInt32();
-			return ((val32 >> 16) & 0xFFFF);
+			var val64 = ptr.ToInt64();
+			return (ushort)((val64 >> 16) & 0xFFFF);
 		}
 	}
 }
