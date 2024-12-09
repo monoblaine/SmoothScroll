@@ -19,11 +19,6 @@ namespace SmoothScroll
 		public bool DefaultEnable { get; set; } = true;
 
 		[Category("General")]
-		[Description("Call source?.AddHook(MessageHook) or not.")]
-		[DisplayName("Add MessageHook")]
-		public bool HookEnable { get; set; } = true;
-
-		[Category("General")]
 		[Description("Enable Smooth Scroll features or not.")]
 		[DisplayName("Enable Smooth Scroll")]
 		public bool SmoothEnable { get; set; } = true;
